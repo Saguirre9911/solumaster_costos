@@ -9,16 +9,19 @@ actual = pd.read_excel("docs/Actual.xlsx", skiprows=2)
 anterior = pd.read_excel("docs/Anterior.xlsx", skiprows=2)
 
 # delete de columns 0, 1, 5 ,6 ,7 y 8 from the dataframes
-actual = actual.drop(actual.columns[[0, 1, 5, 6, 7, 8]], axis=1)
-anterior = anterior.drop(anterior.columns[[0, 1, 5, 6, 7, 8]], axis=1)
+actual = actual.drop(actual.columns[[0, 1, 5, 6, 8]], axis=1)
+anterior = anterior.drop(anterior.columns[[0, 1, 5, 6, 8]], axis=1)
 
 # elimina las casillas en blanco
 actual = actual.dropna()
 anterior = anterior.dropna()
 
 # agrega una columna que sea la divicion entre la columna Total y la columna Cantidad en ambos dataframes
-actual["Costo Unitario"] = actual["Total"] / actual["Cantidad"]
-anterior["Costo Unitario"] = anterior["Total"] / anterior["Cantidad"]
+actual["Costo Unitario IVA"] = actual["Total"] / actual["Cantidad"]
+anterior["Costo Unitario IVA"] = anterior["Total"] / anterior["Cantidad"]
+
+actual["Costo Unitario"] = actual["Neto"] / actual["Cantidad"]
+anterior["Costo Unitario"] = anterior["Neto"] / anterior["Cantidad"]
 
 
 # print the dataframes
@@ -52,7 +55,9 @@ merged_df["Diferencia(act - ant)"] = merged_df["Diferencia(act - ant)"].round(2)
 differences = merged_df[merged_df["diff"]]
 
 # elimina la columna diff
-differences = differences.drop(columns="diff")
+differences = differences.drop(
+    columns=["diff", "Neto_actual", "Total_actual", "Neto_anterior", "Total_anterior"]
+)
 
 # print the differences
 print(differences)
