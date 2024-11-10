@@ -56,8 +56,19 @@ differences = merged_df[merged_df["diff"]]
 
 # elimina la columna diff
 differences = differences.drop(
-    columns=["diff", "Neto_actual", "Total_actual", "Neto_anterior", "Total_anterior"]
+    columns=[
+        "diff",
+        "Neto_actual",
+        "Total_actual",
+        "Neto_anterior",
+        "Total_anterior",
+        "Costo Unitario IVA_actual",
+        "Costo Unitario IVA_anterior",
+        "Medida_anterior",
+    ]
 )
+# cambia el nombre de la columna Medida_actual a Medida
+differences = differences.rename(columns={"Medida_actual": "Medida"})
 
 # print the differences
 print(differences)
