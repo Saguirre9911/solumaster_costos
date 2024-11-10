@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Leer los archivos
-products_with_differences = pd.read_excel("src/costs_comp/docs/products_with_differences.xlsx")
-rentabilidad_df = pd.read_excel("src/costs_comp/docs/RENTABILIDAD.xlsx", skiprows=2)
+products_with_differences = pd.read_excel("src/costs_comp/docs/salida/products_with_differences.xlsx")
+rentabilidad_df = pd.read_excel("src/costs_comp/docs/entrada/informe_rentabilidad.xlsx", skiprows=2)
 
 # Eliminar columnas innecesarias en rentabilidad_df
 columns_to_drop = ["Bodega", "Grupo Uno", "Grupo Dos"]
@@ -36,7 +36,7 @@ updated_rentabilidad_df['%'] = (1 - updated_rentabilidad_df['Costo'] / updated_r
 
 updated_rentabilidad_df.dropna(subset=['Descripcion'], inplace=True)
 # Guardar el resultado actualizado en un nuevo archivo Excel
-updated_rentabilidad_df.to_excel("src/costs_comp/docs/salida_updated_rentabilidad.xlsx", index=False)
+updated_rentabilidad_df.to_excel("src/costs_comp/docs/salida/updated_rentabilidad.xlsx", index=False)
 
 
 # Ver el resultado

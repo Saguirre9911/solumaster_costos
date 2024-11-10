@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 
 # Cargar los datos
-rentabilidad_df = pd.read_excel("src/costs_comp/docs/RENTABILIDAD.xlsx", skiprows=2)
-inventarios_compras_df = pd.read_excel("src/costs_comp/docs/INVENTARIOS-COMPRAS.xlsx", skiprows=2)
+rentabilidad_df = pd.read_excel("src/costs_comp/docs/entrada/informe_rentabilidad.xlsx", skiprows=2)
+inventarios_compras_df = pd.read_excel("src/costs_comp/docs/entrada/informe_inventarios_compras.xlsx", skiprows=2)
 
 # Eliminar columnas innecesarias en rentabilidad_df
 columns_to_drop = ["Bodega", "Grupo Uno", "Grupo Dos"]
@@ -62,4 +62,4 @@ products_with_differences = products_with_differences.sort_values(by=['Producto'
 print(products_with_differences[['Producto', 'Fecha', 'DocumentoNúmero', 'Proveedores', 'UnidadDeMedida', 'Valor Unitario Neto']])
 
 # guarda products_with_differences en un archivo excel
-products_with_differences.to_excel("src/costs_comp/docs/salida_products_with_differences.xlsx", index=False)
+products_with_differences.to_excel("src/costs_comp/docs/salida/products_with_differences.xlsx", index=False)
