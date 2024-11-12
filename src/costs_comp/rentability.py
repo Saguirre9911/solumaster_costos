@@ -33,7 +33,7 @@ updated_rentabilidad_df['Rentabilidad'] = updated_rentabilidad_df['Precio 1'] - 
 
 # Calcular la columna '%' como (1 - Costo / Precio 1) * 100
 updated_rentabilidad_df['%'] = (1 - updated_rentabilidad_df['Costo'] / updated_rentabilidad_df['Precio 1']) * 100
-
+updated_rentabilidad_df['%'] = updated_rentabilidad_df['%'].round(1)
 updated_rentabilidad_df.dropna(subset=['Descripcion'], inplace=True)
 # Guardar el resultado actualizado en un nuevo archivo Excel
 updated_rentabilidad_df.to_excel("src/costs_comp/docs/salida/updated_rentabilidad.xlsx", index=False)
